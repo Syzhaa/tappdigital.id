@@ -42,6 +42,9 @@ export default function LiveChatWidget() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
+  const [isTyping, setIsTyping] = useState(false)
+  const typingTimeoutRef = useRef(null)
+
   const connectWs = () => {
     try {
       const ws = new WebSocket('wss://cs.tappdigital.id/ws')
@@ -50,14 +53,30 @@ export default function LiveChatWidget() {
         try {
           const data = JSON.parse(event.data)
           if (data.event === 'new_message' && data.ticket_id === ticketId) {
+            setIsTyping(false)
             setMessages((prev) => {
               if (prev.some((m) => m.id === data.message.id)) return prev
               return [...prev, data.message]
             })
+          } else if (data.event === 'messages_read' && data.ticket_id === ticketId) {
+            setMessages((prev) => prev.map((m) => ({ ...m, is_read: 1 })))
+          } else if (data.event === 'user_typing' && data.ticket_id === ticketId && data.sender_type === 'AGENT') {
+            setIsTyping(true)
+            clearTimeout(typingTimeoutRef.current)
+            typingTimeoutRef.current = setTimeout(() => setIsTyping(false), 3000)
           }
         } catch (e) {}
       }
     } catch (e) {}
+  }
+
+  const reportCustomerTyping = () => {
+    if (!ticketId) return
+    fetch(`https://cs.tappdigital.id/api/chat/${ticketId}/typing`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sender_type: 'CUSTOMER', sender_name: name || 'Pengunjung' })
+    }).catch(() => {})
   }
 
   const loadHistory = async (tid) => {
@@ -249,6 +268,7 @@ export default function LiveChatWidget() {
 
                 {messages.map((m, idx) => {
                   const isMe = m.sender_type === 'CUSTOMER'
+                  const isRead = m.is_read === 1
                   return (
                     <div
                       key={idx}
@@ -263,12 +283,27 @@ export default function LiveChatWidget() {
                       >
                         {m.body}
                       </div>
-                      <span className="text-[10px] text-slate-500 mt-1 px-1">
-                        {m.created_at ? new Date(m.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ''}
-                      </span>
+                      <div className="flex items-center gap-1 mt-1 px-1 text-[10px] text-slate-400">
+                        <span>{m.created_at ? new Date(m.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ''}</span>
+                        {isMe && (
+                          isRead ? (
+                            <span className="text-[#2AABEE] font-bold text-xs" title="Dibaca">✓✓</span>
+                          ) : (
+                            <span className="text-slate-400 text-xs" title="Terkirim">✓</span>
+                          )
+                        )}
+                      </div>
                     </div>
                   )
                 })}
+
+                {/* Indikator CS Mengetik */}
+                {isTyping && (
+                  <div className="flex items-center gap-2 text-xs text-[#2AABEE] bg-[#182533] px-3 py-1.5 rounded-full w-fit border border-[#242f3d] animate-pulse">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#2AABEE]"></span>
+                    <span>CS sedang mengetik...</span>
+                  </div>
+                )}
                 <div ref={messagesEndRef} />
               </div>
 
@@ -280,7 +315,10 @@ export default function LiveChatWidget() {
                 <input
                   type="text"
                   value={inputText}
-                  onChange={(e) => setInputText(e.target.value)}
+                  onChange={(e) => {
+                    setInputText(e.target.value)
+                    reportCustomerTyping()
+                  }}
                   placeholder="Ketik pesan balasan..."
                   className="flex-1 bg-[#0e1621] border border-[#242f3d] rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#2AABEE]"
                 />
