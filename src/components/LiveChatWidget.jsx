@@ -100,10 +100,22 @@ export default function LiveChatWidget() {
   const formatClientTime = (isoStr) => {
     if (!isoStr) return ''
     try {
-      let clean = isoStr.replace(' ', 'T')
-      if (!clean.endsWith('Z') && !clean.includes('+')) clean += 'Z'
-      const d = new Date(clean)
-      return d.toLocaleTimeString(navigator.language || 'id-ID', {
+      let d
+      if (typeof isoStr === 'string') {
+        // Jika format SQLite 'YYYY-MM-DD HH:MM:SS' (UTC)
+        if (/^\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}/.test(isoStr)) {
+          d = new Date(isoStr.replace(' ', 'T') + 'Z')
+        } else if (!isoStr.endsWith('Z') && !isoStr.includes('+')) {
+          d = new Date(isoStr + 'Z')
+        } else {
+          d = new Date(isoStr)
+        }
+      } else {
+        d = new Date(isoStr)
+      }
+
+      if (isNaN(d.getTime())) return ''
+      return d.toLocaleTimeString([], {
         hour: '2-digit',
         minute: '2-digit',
         hour12: false
