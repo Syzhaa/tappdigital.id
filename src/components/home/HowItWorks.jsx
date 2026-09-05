@@ -11,11 +11,17 @@ export default function HowItWorks() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
+          <div className="inline-block bg-accent-pink border-2 border-primary-dark px-3 py-1 font-black text-xs uppercase tracking-wider mb-4 shadow-neo-xxs">
+            ALUR KERJA
+          </div>
           <h2 className="text-5xl md:text-6xl font-black mb-4">
-            THREE STEPS.
+            TIGA LANGKAH MUDAH.
             <br />
-            <span className="text-primary-indigo">ZERO RIBET.</span>
+            <span className="text-primary-indigo">BEBAS RIBET.</span>
           </h2>
+          <p className="text-lg text-slate-600 max-w-xl mx-auto font-medium">
+            Mulai dari pilih produk sampai produk aktif dan siap pakai dalam hitungan waktu singkat.
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -26,11 +32,13 @@ export default function HowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15 }}
-              className={`${step.bg} border-4 border-primary-dark p-8 shadow-neo hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-neo-xs transition-all`}
+              className={`${step.bg} border-4 border-primary-dark p-8 shadow-neo hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-neo-xs transition-all flex flex-col justify-between`}
             >
-              <div className="text-6xl font-black mb-4 opacity-40">{step.number}</div>
-              <h3 className="text-2xl font-black mb-4">{step.title}</h3>
-              <p className="text-lg">{step.description}</p>
+              <div>
+                <div className="text-6xl font-black mb-4 opacity-40">{step.number}</div>
+                <h3 className="text-2xl font-black mb-4">{step.title}</h3>
+                <p className="text-base text-slate-800 font-medium leading-relaxed">{step.description}</p>
+              </div>
             </motion.div>
           ))}
         </div>

@@ -1,83 +1,113 @@
 export const navigation = [
-  { name: 'Produk', href: '/toko' },
-  { name: 'Fitur', href: '#fitur' },
-  { name: 'Harga', href: '#harga' },
-  { name: 'FAQ', href: '#faq' },
-  { name: 'Tentang Kami', href: '/profil' },
+  { name: 'Beranda', href: '/', isHash: false },
+  { name: 'Produk', href: '/#produk', isHash: true },
+  { name: 'Fitur', href: '/#fitur', isHash: true },
+  { name: 'Harga', href: '/#harga', isHash: true },
+  { name: 'FAQ', href: '/#faq', isHash: true },
+  { name: 'Toko', href: '/toko', isHash: false },
+  { name: 'Tentang Kami', href: '/profil', isHash: false },
 ]
 
 export const useCases = [
   {
     id: 'umkm',
-    title: 'UNTUK UMKM',
-    headline: 'Website profesional tanpa ribet.',
-    description: 'Punya website toko, katalog, atau company profile dengan harga terjangkau. Revisi unlimited + konsultasi gratis.',
+    title: 'UNTUK UMKM & BISNIS',
+    headline: 'Website Toko & Company Profile Siap Jualan.',
+    description: 'Transformasikan bisnis lokal kamu dengan website katalog interaktif, integrasi direct WhatsApp order, dan SEO lokal agar toko gampang dicari pelanggan di Google.',
     visual: 'business'
   },
   {
     id: 'wedding',
     title: 'UNTUK CALON PENGANTIN',
-    headline: 'Undangan digital yang berkesan.',
-    description: 'Buat undangan pernikahan modern, responsif, dan mudah dibagikan. Design custom sesuai tema acara kamu.',
+    headline: 'Undangan Pernikahan Digital Eksklusif.',
+    description: 'Bagikan momen bahagiamu dengan website undangan modern, RSVP otomatis, amplop digital terintegrasi QRIS/Bank, dan peta lokasi yang presisi.',
     visual: 'campaign'
   },
   {
     id: 'personal',
-    title: 'UNTUK PERSONAL',
-    headline: 'Akses premium dengan budget hemat.',
-    description: 'Nikmati Netflix, Spotify, Canva, YouTube Premium dan layanan lainnya dengan harga jauh lebih terjangkau.',
+    title: 'UNTUK PRIBADI & KREATOR',
+    headline: 'Akses Hiburan & Desain Hemat s/d 80%.',
+    description: 'Nikmati Netflix 4K, Spotify Premium, Canva Pro, hingga CapCut Pro dengan akun privat/sharing terjamin, anti-on hold, dan garansi penuh.',
     visual: 'code'
   },
   {
     id: 'student',
     title: 'UNTUK MAHASISWA & PEKERJA',
-    headline: 'Produktivitas tanpa bobol kantong.',
-    description: 'Tools dan akun premium yang kamu butuhkan untuk belajar dan bekerja, dengan harga ramah kantong.',
+    headline: 'Dongkrak Produktivitas dengan AI & Tools Premium.',
+    description: 'Akses ChatGPT Plus, Claude Pro, Google One, dan template riset profesional dengan harga bersahabat untuk mempermudah tugas dan skripsi.',
     visual: 'research'
   }
 ]
 
 export const products = [
   {
-    badge: 'POPULAR',
-    title: 'Undangan Digital Custom',
-    description: 'Website undangan pernikahan/acara yang modern, responsif, dan mudah dibagikan. Design sesuai keinginan kamu.',
-    features: ['Design custom sesuai tema', 'Responsive mobile & desktop', 'Fitur RSVP & Gallery', 'Google Maps terintegrasi', 'Revisi unlimited', 'Konsultasi & pendampingan gratis'],
-    cta: 'LIHAT DEMO & HARGA',
+    badge: 'SOLUSI UTAMA UMKM',
+    title: 'Website & Katalog Bisnis UMKM',
+    description: 'Website profesional super responsif untuk mendongkrak kredibilitas toko, restoran, jasa, atau brand lokal kamu. Siap menerima order langsung via WhatsApp.',
+    features: [
+      'Desain kustom sesuai identitas brand',
+      'Integrasi tombol order otomatis ke WhatsApp',
+      'Katalog produk + galeri foto interaktif',
+      'Terindeks Google (SEO Lokal & Maps)',
+      'Revisi tanpa batas sampai pas',
+      'Konsultasi gratis & bimbingan kelola web'
+    ],
+    cta: 'PESAN WEBSITE BISNIS',
     href: '/toko'
   },
   {
-    badge: 'BEST DEAL',
-    title: 'Akun Premium Sharing',
-    description: 'Akses berbagai platform premium dengan harga jauh lebih terjangkau. Akun stabil, aman, dan support responsif.',
-    features: ['Netflix, Spotify, YouTube Premium', 'Canva Pro, ChatGPT Plus', 'Akun stabil & berkualitas', 'Harga hemat dari official', 'Garansi & support 24/7', 'Aktivasi cepat'],
-    cta: 'CEK KETERSEDIAAN',
+    badge: 'PRODUK FAVORIT',
+    title: 'Undangan Digital Kustom',
+    description: 'Website undangan pernikahan atau event yang elegan, cepat dibuka di smartphone, bebas sebar ke ribuan tamu tanpa batas pengiriman.',
+    features: [
+      'Desain mewah & elegan mobile-first',
+      'Konfirmasi kehadiran RSVP & Buku Tamu',
+      'Fitur Amplop Digital & QRIS terverifikasi',
+      'Navigasi langsung ke Google Maps',
+      'Background musik & galeri foto HD',
+      'Revisi tanpa batas sampai hari H'
+    ],
+    cta: 'LIHAT TEMA & CONTOH',
+    href: '/toko'
+  },
+  {
+    badge: 'HEMAT MAKSIMAL',
+    title: 'Akun Premium Sharing & Privat',
+    description: 'Akses berbagai platform hiburan, desain grafis, dan AI produktivitas dengan biaya bulanan yang sangat hemat dan bergaransi penuh.',
+    features: [
+      'Netflix UHD, Spotify, YouTube Premium',
+      'Canva Pro, ChatGPT Plus & AI Tools',
+      'Garansi ganti akun aktif 24/7',
+      'Aktivasi kilat 5 - 15 menit',
+      'Legal, aman, dan anti banned'
+    ],
+    cta: 'CEK DAFTAR HARGA',
     href: '/toko'
   }
 ]
 
 export const features = [
   {
-    title: 'Konsultasi & Pendampingan Gratis',
-    description: 'Bingung mau design atau fitur apa? Kami bantu dari awal sampai jadi.',
+    title: 'Pendampingan & Diskusi Gratis',
+    description: 'Belum paham teknis website atau bingung pilih paket? Tim kami siap berdiskusi dari awal hingga produk siap pakai.',
     bg: 'bg-accent-purple',
     size: 'large'
   },
   {
-    title: 'Revisi Unlimited',
-    description: 'Ubah, tambah, kurangi sesuka hati sampai 100% sesuai keinginan.',
+    title: 'Revisi Tanpa Batas',
+    description: 'Ubah teks, ganti layout, sesuaikan warna sesuka hati sampai 100% cocok dengan kepuasanmu.',
     bg: 'bg-white',
     size: 'medium'
   },
   {
-    title: 'Harga Terjangkau',
-    description: 'Kualitas profesional dengan budget UMKM-friendly.',
+    title: 'Harga Ramah UMKM',
+    description: 'Standar kualitas studio modern tanpa membebankan biaya jutaan rupiah yang bikin boncos.',
     bg: 'bg-white',
     size: 'small'
   },
   {
-    title: 'Support Responsif',
-    description: 'Ada masalah? Chat langsung, fast response.',
+    title: 'Layanan Bantuan Cepat',
+    description: 'Ada kendala atau pertanyaan seputar produk? Hubungi admin via WhatsApp, kami fast response.',
     bg: 'bg-white',
     size: 'small'
   }
@@ -86,128 +116,146 @@ export const features = [
 export const steps = [
   {
     number: '01',
-    title: 'PILIH PRODUK',
-    description: 'Browse katalog kami, pilih produk yang sesuai kebutuhan. Ada demo untuk produk undangan.',
+    title: 'PILIH PRODUK / KONSULTASI',
+    description: 'Tentukan produk yang kamu butuhkan (Website UMKM, Undangan, atau Akun Premium). Bisa konsultasi gratis terlebih dahulu.',
     bg: 'bg-accent-pink'
   },
   {
     number: '02',
-    title: 'KONSULTASI & ORDER',
-    description: 'Chat dengan kami, diskusikan detail kebutuhan. Order & bayar sesuai paket yang dipilih.',
+    title: 'PROSES PENGERJAAN & DESAIN',
+    description: 'Tim kami langsung memproses pesananmu dengan cepat. Kamu bisa request penyesuaian isi konten sesuai selera.',
     bg: 'bg-accent-cyan'
   },
   {
     number: '03',
-    title: 'TERIMA & GUNAKAN',
-    description: 'Produk selesai? Langsung bisa digunakan. Butuh revisi? Gratis unlimited sampai puas.',
+    title: 'SELESAI & SIAP DIGUNAKAN',
+    description: 'Produk langsung online atau akun langsung aktif. Dilengkapi garansi dan dukungan penuh setelah pengerjaan.',
     bg: 'bg-primary-yellow'
   }
 ]
 
 export const whyChoose = [
   {
-    title: 'Harga Transparan & Terjangkau',
-    description: 'Tidak ada biaya tersembunyi. Harga jelas dari awal, ramah kantong UMKM dan personal.'
+    title: 'Fokus Solusi Nyata untuk UMKM',
+    description: 'Bukan sekadar template asal jadi. Kami rancang alur website agar pengunjung gampang belanja dan langsung chat WhatsApp penjual.'
   },
   {
-    title: 'Revisi Unlimited + Konsultasi Gratis',
-    description: 'Bukan cuma bikin terus ditinggal. Kami dampingi sampai produk benar-benar sesuai keinginan kamu.'
+    title: 'Garansi & Revisi Tanpa Batas',
+    description: 'Kami tidak meninggalkan klien setelah transaksi selesai. Ada garansi replace akun dan revisi web sampai benar-benar puas.'
   },
   {
-    title: 'Kualitas Profesional',
-    description: 'Budget friendly bukan berarti asal-asalan. Semua produk dibuat dengan standar profesional.'
+    title: 'Kecepatan & Performa Tinggi',
+    description: 'Website ringan, sangat cepat dibuka di koneksi HP apa pun, dan ramah kuota untuk pengunjung toko kamu.'
   },
   {
-    title: 'Support Responsif',
-    description: 'Ada kendala atau pertanyaan? Chat langsung, kami fast response dan siap bantu.'
+    title: 'Biaya Transparan Tanpa Jebakan',
+    description: 'Harga yang kamu bayar sesuai kesepakatan awal. Tanpa biaya langganan siluman atau biaya perpanjangan tak masuk akal.'
   }
 ]
 
 export const testimonials = [
   {
     rating: 5,
-    text: 'Undangan digitalnya keren banget! Tamu-tamu pada bilang tampilannya modern dan gampang dibuka. Harga juga masuk akal.',
+    text: 'Semenjak pakai website katalog dari TappDigital, omzet warung kopi saya naik karena menu gampang dilihat dan langsung direct order ke WhatsApp kasir. Harganya sangat masuk akal buat UMKM!',
+    author: 'Rahmat Hidayat',
+    role: 'Owner Kopi Janji Santai'
+  },
+  {
+    rating: 5,
+    text: 'Undangan digital pernikahanku dipuji semua keluarga dan tamu undangan! Tampilannya bersih, elegan di HP, dan musiknya jalan lancar. Revisi berkali-kali pun dilayani dengan sabar.',
     author: 'Dian & Rizky',
-    role: 'Pengantin'
+    role: 'Pengantin Bahagia'
   },
   {
     rating: 5,
-    text: 'Akhirnya nemu tempat jual akun Netflix yang stabil dan harga oke. Support-nya responsif banget, langsung bales.',
-    author: 'Andi',
-    role: 'Mahasiswa'
-  },
-  {
-    rating: 5,
-    text: 'Bikin website toko buat UMKM gue, dibantu dari awal sampai jadi. Revisi berkali-kali juga sabaran. Recommended!',
-    author: 'Sarah',
-    role: 'Pemilik UMKM'
+    text: 'Sudah 6 bulan langganan Netflix dan Canva Pro di sini, gak pernah ada masalah hold atau error. Adminnya super gercep kalau mau perpanjang akun.',
+    author: 'Bagas Pratama',
+    role: 'Freelance Graphic Designer'
   }
 ]
 
 export const pricing = [
   {
+    name: 'WEBSITE BISNIS & UMKM',
+    badge: 'PALING REKOMENDASI',
+    price: 'Mulai Rp 299.000',
+    features: [
+      'Desain profesional & mobile-friendly',
+      'Tombol WhatsApp Checkout otomatis',
+      'Katalog produk / menu lengkap',
+      'Integrasi Google Maps & Alamat',
+      'Revisi tanpa batas sampai live',
+      'Konsultasi strategi digital gratis'
+    ],
+    cta: 'KONSULTASI WEBSITE UMKM',
+    highlighted: true
+  },
+  {
     name: 'UNDANGAN DIGITAL',
+    badge: 'POPULER',
     price: 'Mulai Rp 150.000',
     features: [
-      'Design custom',
-      'Responsive',
-      'RSVP & Gallery',
-      'Revisi unlimited',
-      'Konsultasi gratis'
+      'Pilihan tema eksklusif & modern',
+      'Fitur RSVP, Doa & Amplop Digital',
+      'Navigasi Lokasi Maps interaktif',
+      'Galeri foto HD + Musik latar',
+      'Revisi sepuasnya sampai hari H'
     ],
-    cta: 'LIHAT PAKET',
+    cta: 'PESAN UNDANGAN DIGITAL',
     highlighted: false
   },
   {
-    name: 'AKUN PREMIUM',
-    badge: 'HEMAT',
-    price: 'Mulai Rp 15.000/bulan',
+    name: 'AKUN PREMIUM SHARING',
+    badge: 'SUPER HEMAT',
+    price: 'Mulai Rp 15.000/bln',
     features: [
-      'Netflix, Spotify, dll',
-      'Akun stabil & aman',
-      'Harga jauh lebih murah',
-      'Support 24/7',
-      'Garansi'
+      'Netflix UHD, Spotify, Canva Pro, dll',
+      'Akun stabil anti-hold',
+      'Garansi replace aktif 24 jam',
+      'Proses instan langsung pakai'
     ],
-    cta: 'CEK HARGA',
-    highlighted: true
+    cta: 'LIHAT DAFTAR AKUN',
+    highlighted: false
   }
 ]
 
 export const faq = [
   {
-    question: 'Berapa lama proses pembuatan undangan digital?',
-    answer: 'Untuk undangan digital, biasanya 3-7 hari kerja tergantung kompleksitas design dan antrian. Revisi unlimited sampai selesai sesuai keinginan kamu.'
+    question: 'Kenapa UMKM perlu memiliki website dari TappDigital?',
+    answer: 'Website membuat bisnis Anda terlihat jauh lebih terpercaya, mempermudah calon pelanggan melihat katalog produk/harga tanpa harus tanya-tanya berulang kali, serta mempercepat proses pemesanan lewat tombol WhatsApp otomatis.'
   },
   {
-    question: 'Apakah akun premium yang dijual aman dan legal?',
-    answer: 'Kami menyediakan akun sharing yang sesuai dengan terms of service masing-masing platform. Akun stabil, ada garansi, dan support responsif jika ada kendala.'
+    question: 'Berapa lama proses pembuatan website atau undangan digital?',
+    answer: 'Untuk website UMKM dan undangan digital standar, proses pengerjaan berkisar 2 hingga 5 hari kerja. Kami juga menyediakan layanan express jika dibutuhkan mendesak.'
   },
   {
-    question: 'Bagaimana cara order?',
-    answer: 'Kunjungi halaman Toko, pilih produk yang kamu butuhkan, lalu hubungi kami via WhatsApp/contact yang tersedia untuk konsultasi dan proses order.'
+    question: 'Apakah saya yang belum paham teknologi bisa mengelola website-nya?',
+    answer: 'Sangat bisa! Kami mendampingi dan memberikan petunjuk cara mengelola atau mengupdate isi produk/konten dengan sangat mudah tanpa perlu paham koding.'
   },
   {
-    question: 'Apakah bisa request fitur khusus untuk undangan/website?',
-    answer: 'Tentu! Konsultasikan kebutuhan kamu dengan kami. Kami akan bantu wujudkan dengan harga yang sesuai budget.'
+    question: 'Bagaimana sistem garansi untuk akun premium yang dibeli?',
+    answer: 'Semua akun premium kami memiliki garansi penuh. Jika akun mengalami kendala teknis atau keluar sendiri selama masa sewa aktif, tim kami akan segera memperbaikinya atau mengganti unit akun baru.'
   },
   {
-    question: 'Apakah ada garansi untuk produk yang dibeli?',
-    answer: 'Ya. Untuk undangan digital ada revisi unlimited sampai puas. Untuk akun premium ada garansi replace jika akun bermasalah.'
+    question: 'Bagaimana cara mulai memesan atau berkonsultasi?',
+    answer: 'Klik tombol "Hubungi Kami" atau "Pesan Sekarang" pada produk yang Anda inginkan untuk langsung terhubung ke WhatsApp resmi kami. Konsultasi kebutuhan Anda 100% gratis!'
   }
 ]
 
 export const footerLinks = {
   product: [
-    { name: 'Toko', href: '/toko' },
-    { name: 'Fitur', href: '#fitur' },
-    { name: 'Harga', href: '#harga' },
-    { name: 'FAQ', href: '#faq' }
+    { name: 'Beranda', href: '/' },
+    { name: 'Website UMKM', href: '/#produk' },
+    { name: 'Undangan Digital', href: '/#produk' },
+    { name: 'Akun Premium', href: '/#produk' },
+    { name: 'Toko Lengkap', href: '/toko' },
+    { name: 'Daftar Harga', href: '/#harga' }
   ],
   contact: [
-    { name: 'Email', href: 'mailto:hello@tappdigital.id' },
-    { name: 'Instagram', href: '#' },
-    { name: 'TikTok', href: '#' },
-    { name: 'LinkedIn', href: '#' }
+    { name: 'Customer Service: cs@tappdigital.id', href: 'mailto:cs@tappdigital.id' },
+    { name: 'Bantuan Teknis: support@tappdigital.id', href: 'mailto:support@tappdigital.id' },
+    { name: 'Billing / Keuangan: billing@tappdigital.id', href: 'mailto:billing@tappdigital.id' },
+    { name: 'WhatsApp Admin', href: 'https://wa.me/6281234567890' },
+    { name: 'Instagram', href: 'https://instagram.com/tappdigital.id' }
   ]
 }

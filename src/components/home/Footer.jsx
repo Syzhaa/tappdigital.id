@@ -8,22 +8,22 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="font-black uppercase tracking-tight text-3xl mb-4">
-              TAPPDIGITAL
+              TAPPDIGITAL<span className="text-primary-indigo">.ID</span>
             </div>
-            <p className="text-slate-400">
-              Digital products and tools for modern work.
+            <p className="text-slate-400 font-medium">
+              Solusi produk digital, website, undangan kustom, dan akun hemat untuk kemudahan aktivitas harianmu.
             </p>
           </div>
 
-          {/* Navigation */}
+          {/* Navigasi Produk */}
           <div>
-            <h4 className="font-black uppercase tracking-wide mb-6 text-sm">Product</h4>
+            <h4 className="font-black uppercase tracking-wider mb-6 text-sm text-primary-yellow">Navigasi</h4>
             <ul className="space-y-3">
               {footerLinks.product.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-slate-400 hover:text-primary-yellow transition-colors"
+                    className="text-slate-400 hover:text-primary-yellow transition-colors font-medium text-sm"
                   >
                     {link.name}
                   </a>
@@ -32,15 +32,15 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Kontak Kami */}
           <div>
-            <h4 className="font-black uppercase tracking-wide mb-6 text-sm">Contact</h4>
+            <h4 className="font-black uppercase tracking-wider mb-6 text-sm text-primary-yellow">Kontak & Layanan</h4>
             <ul className="space-y-3">
               {footerLinks.contact.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-slate-400 hover:text-primary-yellow transition-colors"
+                    className="text-slate-400 hover:text-primary-yellow transition-colors font-medium text-sm flex items-center gap-2"
                   >
                     {link.name}
                   </a>
@@ -51,8 +51,8 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-primary-dark/30 pt-8 text-center text-slate-500 text-sm">
-          © 2026 TappDigital. Built with raw energy.
+        <div className="border-t border-slate-800 pt-8 text-center text-slate-500 text-sm font-medium">
+          © {new Date().getFullYear()} TappDigital. Hak Cipta Dilindungi. Dibuat dengan dedikasi penuh.
         </div>
       </div>
     </footer>

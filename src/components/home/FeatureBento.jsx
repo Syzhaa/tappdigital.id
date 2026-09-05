@@ -3,7 +3,7 @@ import { features } from '../../data/home.js'
 
 export default function FeatureBento() {
   return (
-    <section className="py-24 bg-primary-bg">
+    <section className="py-24 bg-primary-bg" id="fitur">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -11,10 +11,13 @@ export default function FeatureBento() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
+          <div className="inline-block bg-accent-cyan border-2 border-primary-dark px-3 py-1 font-black text-xs uppercase tracking-wider mb-4 shadow-neo-xxs">
+            KEUNGGULAN UTAMA
+          </div>
           <h2 className="text-5xl md:text-6xl font-black mb-6">
-            BUILT TO
+            DIRANCANG UNTUK
             <br />
-            <span className="text-primary-indigo">KEEP YOU MOVING.</span>
+            <span className="text-primary-indigo">MEMUDAHKAN HIDUPMU.</span>
           </h2>
         </motion.div>
 
@@ -28,7 +31,7 @@ export default function FeatureBento() {
             className={`${features[0].bg} border-4 border-primary-dark p-8 shadow-neo md:col-span-2 md:row-span-2 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-neo-xs transition-all`}
           >
             <h3 className="text-3xl font-black mb-4">{features[0].title}</h3>
-            <p className="text-lg mb-8">{features[0].description}</p>
+            <p className="text-lg mb-8 text-slate-800 font-medium">{features[0].description}</p>
             <div className="relative h-64">
               {/* Animated workspace visual */}
               <motion.div
@@ -41,9 +44,10 @@ export default function FeatureBento() {
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
-                className="absolute top-4 left-4 border-2 border-primary-dark bg-white p-4 w-32"
+                className="absolute top-4 left-4 border-2 border-primary-dark bg-white p-4 w-36 shadow-neo-xxs"
               >
-                <div className="text-sm font-black">BROWSER</div>
+                <div className="text-xs font-black">WEBSITE & TOKO</div>
+                <div className="text-[10px] text-slate-500 mt-1">Siap jualan online</div>
               </motion.div>
               <motion.div
                 animate={{
@@ -56,14 +60,15 @@ export default function FeatureBento() {
                   ease: "easeInOut",
                   delay: 0.5
                 }}
-                className="absolute top-12 right-8 border-2 border-primary-dark bg-white p-4 w-40"
+                className="absolute top-12 right-8 border-2 border-primary-dark bg-white p-4 w-44 shadow-neo-xxs"
               >
-                <div className="text-sm font-black">DASHBOARD</div>
+                <div className="text-xs font-black">UNDANGAN ACARA</div>
+                <div className="text-[10px] text-slate-500 mt-1">Desain kustom eksklusif</div>
               </motion.div>
               <motion.div
                 animate={{
                   scale: [1, 1.05, 1],
-                  opacity: [0.8, 1, 0.8],
+                  opacity: [0.9, 1, 0.9],
                 }}
                 transition={{
                   duration: 3,
@@ -71,9 +76,10 @@ export default function FeatureBento() {
                   ease: "easeInOut",
                   delay: 1
                 }}
-                className="absolute bottom-8 left-1/2 transform -translate-x-1/2 border-2 border-primary-dark bg-white p-4 w-48"
+                className="absolute bottom-8 left-1/2 transform -translate-x-1/2 border-2 border-primary-dark bg-white p-4 w-52 shadow-neo-xxs text-center"
               >
-                <div className="text-sm font-black">DOCUMENTS</div>
+                <div className="text-xs font-black text-primary-indigo">AKUN PREMIUM HEMAT</div>
+                <div className="text-[10px] text-slate-500 mt-1">Akses cepat & anti ribet</div>
               </motion.div>
             </div>
           </motion.div>
@@ -87,31 +93,23 @@ export default function FeatureBento() {
             className={`${features[1].bg} border-4 border-primary-dark p-8 shadow-neo md:col-span-2 hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-neo-xs transition-all`}
           >
             <h3 className="text-2xl font-black mb-4">{features[1].title}</h3>
-            <p className="mb-6">{features[1].description}</p>
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="font-medium">Before:</span>
-                <span className="font-black">92%</span>
+            <p className="mb-6 text-slate-600 font-medium">{features[1].description}</p>
+            <div className="space-y-3">
+              <div className="flex items-center justify-between text-xs font-black">
+                <span>Tingkat Kepuasan Klien Kami:</span>
+                <span className="text-primary-indigo font-black text-sm">99.8%</span>
               </div>
-              <div className="h-6 bg-primary-dark/20 rounded overflow-hidden">
+              <div className="h-6 bg-slate-200 border-2 border-primary-dark overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
-                  whileInView={{ width: '92%' }}
+                  whileInView={{ width: '99.8%' }}
                   transition={{ duration: 1, delay: 0.3 }}
-                  className="h-full bg-accent-pink"
-                />
-              </div>
-              <div className="flex items-center justify-between mt-4">
-                <span className="font-medium">After:</span>
-                <span className="font-black">38%</span>
-              </div>
-              <div className="h-6 bg-primary-dark/20 rounded overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: '38%' }}
-                  transition={{ duration: 1, delay: 0.5 }}
                   className="h-full bg-accent-green"
                 />
+              </div>
+              <div className="flex items-center justify-between text-xs text-slate-500 font-bold">
+                <span>Revisi Sampai Cocok</span>
+                <span>Garansi 100% Puas</span>
               </div>
             </div>
           </motion.div>
@@ -124,9 +122,9 @@ export default function FeatureBento() {
             transition={{ delay: 0.3 }}
             className={`${features[2].bg} border-4 border-primary-dark p-6 shadow-neo hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-neo-xs transition-all`}
           >
-            <div className="text-4xl mb-4">☁️🛡️</div>
+            <div className="text-4xl mb-4">💰✨</div>
             <h4 className="text-xl font-black mb-2">{features[2].title}</h4>
-            <p className="text-sm">{features[2].description}</p>
+            <p className="text-sm text-slate-600 font-medium">{features[2].description}</p>
           </motion.div>
 
           {/* Small Feature 2 */}
@@ -137,9 +135,9 @@ export default function FeatureBento() {
             transition={{ delay: 0.4 }}
             className={`${features[3].bg} border-4 border-primary-dark p-6 shadow-neo hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-neo-xs transition-all`}
           >
-            <div className="text-4xl mb-4">⬇️💥</div>
+            <div className="text-4xl mb-4">⚡💬</div>
             <h4 className="text-xl font-black mb-2">{features[3].title}</h4>
-            <p className="text-sm">{features[3].description}</p>
+            <p className="text-sm text-slate-600 font-medium">{features[3].description}</p>
           </motion.div>
         </div>
       </div>

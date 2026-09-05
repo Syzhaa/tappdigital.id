@@ -44,135 +44,135 @@ function Card({ children, className = '', ...rest }) {
 
 const missions = [
   {
-    title: 'Democratize Web Access',
+    title: 'Demokratisasi Akses Web',
     desc: 'Sarana publikasi web yang cepat dan siap pakai tanpa keahlian coding dari sisi pengguna.',
   },
   {
-    title: 'Empower Local Business',
+    title: 'Pemberdayaan Bisnis Lokal',
     desc: 'Akselerasi transformasi digital bisnis lokal melalui website cepat, responsif, dan terintegrasi.',
   },
   {
-    title: 'Improve Digital Productivity',
-    desc: 'Tools dan layanan digital untuk mahasiswa, creator, profesional, dan pengguna umum.',
+    title: 'Tingkatkan Produktivitas Digital',
+    desc: 'Tools dan layanan digital untuk mahasiswa, kreator, profesional, dan pengguna umum.',
   },
   {
-    title: 'Build Reliable Infrastructure',
+    title: 'Bangun Infrastruktur Andal',
     desc: 'Performa tinggi, keamanan sejak awal, dan infrastruktur yang stabil.',
   },
 ]
 
 const values = [
   {
-    title: 'Simplicity by Design',
+    title: 'Kesederhanaan Desain',
     desc: 'Mengurangi kompleksitas visual dan teknis tanpa mengorbankan fungsi utama.',
   },
   {
-    title: 'Speed & Efficiency',
+    title: 'Kecepatan & Efisiensi',
     desc: 'Sistem yang cepat, ringan, responsif, dan efisien.',
   },
   {
-    title: 'Transparency & Integrity',
+    title: 'Transparansi & Integritas',
     desc: 'Alur kerja jelas dan bertanggung jawab terhadap data pengguna.',
   },
   {
-    title: 'Reliability',
+    title: 'Keandalan',
     desc: 'Sistem yang dapat diandalkan dalam penggunaan nyata.',
   },
   {
-    title: 'Continuous Improvement',
+    title: 'Pengembangan Berkelanjutan',
     desc: 'Produk berkembang mengikuti kebutuhan pengguna dan teknologi.',
   },
 ]
 
 const ecosystem = [
   {
-    title: 'DIGITAL PRODUCTS',
-    items: ['SaaS / Platforms', 'Event Products', 'Web Applications'],
+    title: 'PRODUK DIGITAL',
+    items: ['SaaS / Platform', 'Produk Event', 'Aplikasi Web'],
     accent: 'text-accent-purple',
   },
   {
-    title: 'WEB SOLUTIONS',
-    items: ['Custom Web', 'Landing Page', 'Web Systems'],
+    title: 'SOLUSI WEB',
+    items: ['Web Kustom', 'Landing Page', 'Sistem Web'],
     accent: 'text-accent-cyan',
   },
   {
-    title: 'DIGITAL TOOLS',
-    items: ['Extensions', 'Productivity', 'Utilities'],
+    title: 'TOOLS DIGITAL',
+    items: ['Ekstensi', 'Produktivitas', 'Utilitas'],
     accent: 'text-accent-green',
   },
 ]
 
 const webSolutions = [
-  { title: 'High-Conversion Landing Page', desc: 'Struktur informasi dirancang agar pengunjung mengambil tindakan yang jelas.' },
-  { title: 'Business Website', desc: 'Website profesional untuk perusahaan, UMKM, organisasi, dan personal brand.' },
-  { title: 'Custom Web Application', desc: 'Sistem web sesuai kebutuhan proses bisnis Anda.' },
-  { title: 'WhatsApp Integration', desc: 'Integrasi form dan alur pemesanan dengan WhatsApp.' },
-  { title: 'SEO Baseline', desc: 'Struktur teknis dasar siap dioptimalkan untuk mesin pencari.' },
-  { title: 'Mobile Optimization', desc: 'Pengalaman mobile-first di semua ukuran layar.' },
-  { title: 'Deployment', desc: 'Setup domain, SSL, server, dan deployment end-to-end.' },
+  { title: 'Landing Page Konversi Tinggi', desc: 'Struktur informasi dirancang agar pengunjung mengambil tindakan yang jelas.' },
+  { title: 'Website Bisnis & Profil', desc: 'Website profesional untuk perusahaan, UMKM, organisasi, dan personal brand.' },
+  { title: 'Aplikasi Web Kustom', desc: 'Sistem web sesuai kebutuhan alur dan proses bisnis Anda.' },
+  { title: 'Integrasi WhatsApp', desc: 'Integrasi form, notifikasi, dan alur pemesanan langsung dengan WhatsApp.' },
+  { title: 'Fondasi SEO Optimal', desc: 'Struktur teknis dasar siap dioptimalkan untuk mesin pencari.' },
+  { title: 'Optimasi Mobile Penuh', desc: 'Pengalaman mobile-first yang mulus di semua ukuran layar.' },
+  { title: 'Deployment & Setup', desc: 'Setup domain, SSL, server, dan deployment end-to-end siap pakai.' },
 ]
 
 const devProcess = [
-  { num: '01', title: 'Discovery', desc: 'Memahami kebutuhan, masalah, target pengguna, dan tujuan produk.' },
-  { num: '02', title: 'Research & Planning', desc: 'Requirement, struktur sistem, prioritas fitur, technical approach.' },
-  { num: '03', title: 'UX / UI Design', desc: 'Pengalaman dan interface yang mudah digunakan.' },
-  { num: '04', title: 'Development', desc: 'Implementasi frontend, backend, database, API, dan integrasi.' },
-  { num: '05', title: 'Quality Assurance', desc: 'Fungsi, responsive, compatibility, security baseline, performance.' },
-  { num: '06', title: 'Deployment', desc: 'Infrastructure, domain, SSL, DNS, monitoring.' },
-  { num: '07', title: 'Support & Improvement', desc: 'Bug fix, maintenance, monitoring, pengembangan lanjutan.' },
+  { num: '01', title: 'Eksplorasi & Discovery', desc: 'Memahami kebutuhan, masalah, target pengguna, dan tujuan produk.' },
+  { num: '02', title: 'Riset & Perencanaan', desc: 'Analisis kebutuhan, struktur sistem, prioritas fitur, dan pendekatan teknis.' },
+  { num: '03', title: 'Desain UX / UI', desc: 'Merancang antarmuka dan pengalaman pengguna yang intuitif dan mudah dipakai.' },
+  { num: '04', title: 'Pengembangan (Development)', desc: 'Implementasi frontend, backend, database, API, serta integrasi sistem.' },
+  { num: '05', title: 'Quality Assurance (QA)', desc: 'Pengujian fungsi, responsivitas, kompatibilitas, keamanan dasar, dan performa.' },
+  { num: '06', title: 'Deployment & Rilis', desc: 'Konfigurasi infrastruktur, domain, SSL, DNS, hingga monitoring.' },
+  { num: '07', title: 'Dukungan & Pemeliharaan', desc: 'Perbaikan bug, pemeliharaan rutin, monitoring, dan pengembangan lanjutan.' },
 ]
 
 const techStack = [
   { layer: 'Frontend', items: ['React.js', 'Next.js', 'Vite', 'Tailwind CSS'] },
   { layer: 'Backend', items: ['Node.js', 'Python'] },
-  { layer: 'Infrastructure', items: ['Linux', 'Nginx', 'VPS', 'Cloudflare'] },
+  { layer: 'Infrastruktur', items: ['Linux', 'Nginx', 'VPS', 'Cloudflare'] },
   { layer: 'Database', items: ['PostgreSQL', 'MySQL', 'Redis'] },
 ]
 
-const infraFlow = ['USERS', 'CLOUDFLARE — DNS / SECURITY', 'NGINX / PROXY', 'APPLICATION SERVER']
+const infraFlow = ['PENGGUNA / USER', 'CLOUDFLARE — DNS & KEAMANAN', 'NGINX / REVERSE PROXY', 'SERVER APLIKASI']
 const infraLeaf = ['DATABASE', 'STORAGE', 'SERVICES', 'BACKUP']
 
 const securityLayers = [
   {
-    title: 'Application Security',
-    items: ['Input validation', 'Sanitization', 'Authentication', 'Authorization', 'Secure session'],
+    title: 'Keamanan Aplikasi',
+    items: ['Validasi input', 'Sanitasi data', 'Autentikasi aman', 'Otorisasi ketat', 'Sesi aman'],
   },
   {
-    title: 'Infrastructure Security',
-    items: ['SSL/TLS', 'Firewall', 'Cloudflare protection', 'Server hardening', 'Access control'],
+    title: 'Keamanan Infrastruktur',
+    items: ['Enkripsi SSL/TLS', 'Firewall', 'Proteksi Cloudflare', 'Hardening server', 'Kontrol akses'],
   },
   {
-    title: 'Data Protection',
-    items: ['Data minimization', 'Controlled access', 'Secure storage', 'Backup'],
+    title: 'Perlindungan Data',
+    items: ['Minimalisasi data', 'Akses terkontrol', 'Penyimpanan aman', 'Backup berkala'],
   },
   {
-    title: 'Operational Security',
-    items: ['Dependency updates', 'Logging', 'Monitoring', 'Incident response'],
+    title: 'Keamanan Operasional',
+    items: ['Pembaruan dependensi', 'Pencatatan log', 'Monitoring aktif', 'Respons insiden'],
   },
 ]
 
 const quality = [
-  { title: 'Fast', desc: 'Resource yang tidak diperlukan dikurangi.', bg: 'bg-accent-cyan' },
-  { title: 'Responsive', desc: 'Optimal di mobile, tablet, desktop.', bg: 'bg-white' },
-  { title: 'Accessible', desc: 'Interface mudah dipahami dan digunakan.', bg: 'bg-white' },
-  { title: 'SEO-Ready', desc: 'HTML, metadata, performance baseline.', bg: 'bg-accent-green' },
-  { title: 'Tested', desc: 'Pengujian sebelum deployment.', bg: 'bg-white' },
+  { title: 'Cepat & Ringan', desc: 'Resource yang tidak diperlukan dipangkas secara optimal.', bg: 'bg-accent-cyan' },
+  { title: 'Responsif', desc: 'Tampilan optimal di perangkat mobile, tablet, dan desktop.', bg: 'bg-white' },
+  { title: 'Aksesibel', desc: 'Antarmuka mudah dipahami dan nyaman digunakan siapa saja.', bg: 'bg-white' },
+  { title: 'Siap SEO', desc: 'Struktur HTML semantik, metadata lengkap, dan performa cepat.', bg: 'bg-accent-green' },
+  { title: 'Teruji', desc: 'Pengujian fungsi dan stabilitas menyeluruh sebelum rilis.', bg: 'bg-white' },
 ]
 
 const partnerships = [
-  { title: 'Technology Partnership', desc: 'Pengembangan dan integrasi teknologi.', bg: 'bg-white' },
-  { title: 'Development Partnership', desc: 'Kolaborasi pengembangan produk digital.', bg: 'bg-white' },
-  { title: 'White-label Partnership', desc: 'Produk white-label apabila tersedia.', bg: 'bg-accent-purple' },
-  { title: 'Agency Partnership', desc: 'Kolaborasi dengan agency dan digital consultant.', bg: 'bg-white' },
-  { title: 'Business Partnership', desc: 'Kolaborasi produk dan layanan.', bg: 'bg-white' },
-  { title: 'Institutional Partnership', desc: 'Organisasi, pendidikan, komunitas, institusi.', bg: 'bg-accent-pink' },
+  { title: 'Kemitraan Teknologi', desc: 'Kolaborasi integrasi dan pengembangan arsitektur teknologi.', bg: 'bg-white' },
+  { title: 'Kemitraan Pengembangan', desc: 'Kolaborasi bersama dalam membangun produk digital inovatif.', bg: 'bg-white' },
+  { title: 'Kemitraan White-label', desc: 'Penyediaan solusi siap pakai dengan branding mandiri mitra.', bg: 'bg-accent-purple' },
+  { title: 'Kemitraan Agensi', desc: 'Kolaborasi teknis bersama agensi kreatif dan konsultan digital.', bg: 'bg-white' },
+  { title: 'Kemitraan Bisnis', desc: 'Sinergi produk, distribusi, dan perluasan layanan bersama.', bg: 'bg-white' },
+  { title: 'Kemitraan Institusi', desc: 'Dukungan digital untuk organisasi, institusi pendidikan, dan komunitas.', bg: 'bg-accent-pink' },
 ]
 
 const roadmap = [
-  { phase: 'Today', items: ['Web Solutions', 'Digital Products', 'Digital Tools'] },
-  { phase: 'Next', items: ['SaaS Platforms', 'Productized Services', 'Automation'] },
-  { phase: 'Expansion', items: ['Business Platforms', 'Education Technology', 'Product Ecosystem'] },
-  { phase: 'Long Term', items: ['Integrated Digital Ecosystem'] },
+  { phase: 'Saat Ini', items: ['Solusi Web', 'Produk Digital', 'Tools Produktivitas'] },
+  { phase: 'Berikutnya', items: ['Platform SaaS', 'Layanan Terstandarisasi', 'Otomasi Sistem'] },
+  { phase: 'Ekspansi', items: ['Platform Bisnis', 'Teknologi Edukasi', 'Ekosistem Produk'] },
+  { phase: 'Jangka Panjang', items: ['Ekosistem Digital Terintegrasi'] },
 ]
 
 export default function Profil() {
@@ -188,8 +188,8 @@ export default function Profil() {
           <motion.div {...fadeUp}>
             <Eyebrow>TappDigital.id — Indonesia</Eyebrow>
             <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tight leading-[1.05] max-w-5xl">
-              Building Digital Products for a{' '}
-              <span className="text-primary-indigo">Simpler Digital World.</span>
+              Membangun Produk Digital untuk{' '}
+              <span className="text-primary-indigo">Dunia yang Lebih Simpel.</span>
             </h1>
             <p className="mt-8 text-xl text-slate-600 max-w-2xl font-medium">
               TappDigital adalah studio produk digital modern — riset, pengembangan,
@@ -218,15 +218,15 @@ export default function Profil() {
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
             number="01"
-            eyebrow="About Us"
+            eyebrow="Tentang Kami"
             title="Studio Produk Digital Modern"
             desc="TappDigital berfokus pada penghapusan kompleksitas teknis bagi pengguna akhir — individu, UMKM, mahasiswa, creator, profesional, dan organisasi dapat memanfaatkan ekosistem digital secara lebih mudah dan efisien."
           />
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { t: 'Digital Products', d: 'Produk digital yang dapat digunakan secara luas.' },
-              { t: 'Web Solutions', d: 'Website dan sistem web sesuai kebutuhan bisnis.' },
-              { t: 'Digital Tools', d: 'Tools dan extension untuk produktivitas.' },
+              { t: 'Produk Digital', d: 'Produk digital yang dapat digunakan secara luas dan siap pakai.' },
+              { t: 'Solusi Web', d: 'Website dan sistem web sesuai kebutuhan spesifik bisnis.' },
+              { t: 'Tools Digital', d: 'Tools dan ekstensi praktis untuk mendongkrak produktivitas.' },
             ].map((c, i) => (
               <Card key={c.t}>
                 <span className={`font-black ${['text-accent-purple', 'text-accent-cyan', 'text-accent-green'][i]}`}>
@@ -245,12 +245,12 @@ export default function Profil() {
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
             number="02"
-            eyebrow="Vision & Mission"
+            eyebrow="Visi & Misi"
             title="Arah Jelas. Eksekusi Terukur."
           />
           <div className="grid lg:grid-cols-2 gap-6 mb-6">
             <Card>
-              <Eyebrow>Our Vision</Eyebrow>
+              <Eyebrow>Visi Kami</Eyebrow>
               <p className="text-lg leading-relaxed font-medium">
                 Menjadi studio produk digital dan penyedia solusi web terdepan di
                 Indonesia yang dikenal atas keandalan sistem, kebebasan dari
@@ -258,7 +258,7 @@ export default function Profil() {
                 mendukung inklusivitas digital nasional.
               </p>
               <p className="mt-8 text-sm italic border-l-4 border-primary-indigo pl-4 text-slate-600">
-                "Technology should solve problems, not create new complexity."
+                "Teknologi hadir untuk menyelesaikan masalah, bukan menciptakan kerumitan baru."
               </p>
             </Card>
             <div className="grid sm:grid-cols-2 gap-6">
@@ -287,8 +287,8 @@ export default function Profil() {
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
             number="03"
-            eyebrow="Our Digital Ecosystem"
-            title="One Studio. Multiple Experiences."
+            eyebrow="Ekosistem Digital Kami"
+            title="Satu Studio. Beragam Pengalaman."
             desc="Berbagai bentuk produk dan solusi digital dengan satu tujuan: membuat teknologi lebih mudah digunakan dalam kehidupan nyata."
           />
           <motion.div {...fadeUp} className="max-w-5xl mx-auto">
@@ -333,7 +333,7 @@ export default function Profil() {
 
             {/* Users */}
             <div className="mt-8 md:mt-10 bg-primary-indigo text-white font-black uppercase px-8 py-5 shadow-neo text-sm tracking-wide text-center leading-relaxed">
-              Digital Users — Individuals · UMKM · Creator · Student · Professional · Organization
+              Pengguna Digital — Individu · UMKM · Kreator · Mahasiswa · Profesional · Organisasi
             </div>
           </motion.div>
         </div>
@@ -344,8 +344,8 @@ export default function Profil() {
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
             number="04"
-            eyebrow="Web Solutions"
-            title="Custom Web & Landing Page."
+            eyebrow="Solusi Web"
+            title="Web Kustom & Landing Page"
             desc="TappDigital membantu bisnis dan organisasi membangun presence digital yang cepat, profesional, dan mudah dikembangkan."
           />
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -365,8 +365,8 @@ export default function Profil() {
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
             number="05"
-            eyebrow="How We Work"
-            title="Our Development System"
+            eyebrow="Alur Kerja Kami"
+            title="Sistem Pengembangan Produk"
           />
           <ol className="relative border-l-4 border-primary-dark ml-4 space-y-8">
             {devProcess.map((p) => (
@@ -388,13 +388,13 @@ export default function Profil() {
           <motion.div {...fadeUp} className="mb-14">
             <div className="flex items-baseline gap-4 mb-5">
               <span className="text-6xl md:text-7xl font-black text-white/15">06</span>
-              <Eyebrow>Technology & Infrastructure</Eyebrow>
+              <Eyebrow>Teknologi & Infrastruktur</Eyebrow>
             </div>
             <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight leading-tight mb-5">
-              Built for Reliability.
+              Dibangun untuk Keandalan Maksimal.
             </h2>
             <p className="max-w-2xl text-lg text-slate-400">
-              Technology should serve the product, not become the product.
+              Teknologi harus melayani produk dan solusi, bukan menjadi beban kerumitan.
             </p>
           </motion.div>
           <div className="grid lg:grid-cols-2 gap-12">
@@ -435,7 +435,7 @@ export default function Profil() {
                 </div>
               ))}
               <p className="mt-8 text-slate-400 text-sm text-center font-medium">
-                High availability · Secure communication · Monitoring · Backup · Controlled access
+                Ketersediaan Tinggi (HA) · Komunikasi Terenkripsi · Monitoring · Backup · Kontrol Akses Ketat
               </p>
             </div>
           </div>
@@ -447,9 +447,9 @@ export default function Profil() {
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
             number="07"
-            eyebrow="Security & Privacy"
-            title="Security by Design."
-            desc="Security bukan fitur tambahan. Dipertimbangkan sejak architecture, development, deployment, sampai maintenance."
+            eyebrow="Keamanan & Privasi"
+            title="Keamanan Sejak Awal Desain"
+            desc="Keamanan bukan fitur tambahan. Dipertimbangkan sejak perancangan arsitektur, pengembangan, deployment, hingga pemeliharaan berkala."
           />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
             {securityLayers.map((s, i) => (
@@ -466,8 +466,8 @@ export default function Profil() {
             ))}
           </div>
           <motion.p {...fadeUp} className="max-w-3xl text-xl font-bold border-l-4 border-primary-indigo pl-6">
-            TappDigital berkomitmen membangun sistem dengan mempertimbangkan
-            keamanan, privasi, dan reliability sebagai bagian dari proses pengembangan.
+            TappDigital berkomitmen membangun sistem dengan memprioritaskan
+            keamanan, privasi data, dan keandalan operasional sebagai standar utama.
           </motion.p>
         </div>
       </section>
@@ -477,8 +477,8 @@ export default function Profil() {
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
             number="08"
-            eyebrow="Quality & Performance"
-            title="Built to Perform."
+            eyebrow="Kualitas & Performa"
+            title="Dirancang untuk Berperforma Tinggi"
           />
           <div className="grid grid-cols-2 md:grid-cols-5 gap-6 mb-10">
             {quality.map((q) => (
@@ -489,7 +489,7 @@ export default function Profil() {
             ))}
           </div>
           <motion.p {...fadeUp} className="text-2xl font-black uppercase tracking-tight">
-            "A beautiful interface means little if users have to wait for it."
+            "Tampilan yang menarik tidak ada artinya jika pengguna harus menunggu lama."
           </motion.p>
         </div>
       </section>
@@ -499,9 +499,9 @@ export default function Profil() {
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
             number="09"
-            eyebrow="Future Roadmap"
-            title="Where We Are Going."
-            desc="Roadmap menggambarkan arah, bukan janji angka yang belum pasti."
+            eyebrow="Peta Jalan (Roadmap)"
+            title="Arah Pengembangan Kami"
+            desc="Roadmap menggambarkan fokus dan arah bertumbuh, bukan sekadar janji target yang belum pasti."
           />
           <div className="grid md:grid-cols-4 gap-6">
             {roadmap.map((r, i) => (
@@ -523,10 +523,10 @@ export default function Profil() {
           </div>
           <div className="grid md:grid-cols-4 gap-6 mt-10">
             {[
-              { t: 'Productization', d: 'Solusi custom menjadi produk yang digunakan lebih luas.' },
-              { t: 'Automation', d: 'Mengurangi pekerjaan manual melalui automation.' },
-              { t: 'Platform', d: 'Platform digital dengan recurring value.' },
-              { t: 'Ecosystem', d: 'Produk TappDigital terhubung dalam satu ecosystem.' },
+              { t: 'Produk Terstandarisasi', d: 'Mentransformasi solusi kustom menjadi produk yang dapat digunakan lebih luas.' },
+              { t: 'Otomasi Terpadu', d: 'Memangkas proses manual melalui integrasi otomasi sistem yang cerdas.' },
+              { t: 'Ekspansi Platform', d: 'Mengembangkan platform digital yang memberi nilai berkelanjutan (recurring value).' },
+              { t: 'Integrasi Ekosistem', d: 'Menghubungkan seluruh produk TappDigital dalam satu ekosistem terpadu.' },
             ].map((s) => (
               <motion.div key={s.t} {...fadeUp} className="border-l-4 border-primary-indigo pl-4">
                 <h5 className="font-black uppercase text-sm">{s.t}</h5>
@@ -542,9 +542,9 @@ export default function Profil() {
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
             number="10"
-            eyebrow="Partnership"
-            title="Let's Build Together."
-            desc="TappDigital terbuka untuk berbagai bentuk kolaborasi."
+            eyebrow="Kemitraan & Kolaborasi"
+            title="Mari Berkembang Bersama"
+            desc="TappDigital terbuka untuk berbagai bentuk kolaborasi dan sinergi digital."
           />
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {partnerships.map((p) => (
@@ -566,8 +566,8 @@ export default function Profil() {
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeading
             number="11"
-            eyebrow="Contact"
-            title="Start a Conversation."
+            eyebrow="Hubungi Kami"
+            title="Mulai Kolaborasi & Diskusi"
           />
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl">
             <a href="https://wa.me/628593510424" target="_blank" rel="noreferrer" className="group">
@@ -591,10 +591,10 @@ export default function Profil() {
           </div>
           <motion.div {...fadeUp} className="mt-16 text-center">
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight leading-tight mb-12">
-              Have an idea or<br />
-              <span className="text-primary-indigo">a digital product in mind?</span>
+              Punya ide atau rencana<br />
+              <span className="text-primary-indigo">produk digital impian?</span>
               <br />
-              LET'S BUILD IT.
+              MARI WUJUDKAN BERSAMA.
             </h2>
             <a
               href="https://wa.me/628593510424"

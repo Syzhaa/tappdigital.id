@@ -19,24 +19,27 @@ export default {
         primary: {
           dark: '#0F172A',
           bg: '#F8FAFC',
-          indigo: '#6366F1',
-          yellow: '#FDE047',
+          indigo: '#4F46E5', // indigo 600 modern punchy
+          yellow: '#FACC15', // vibrant amber yellow
         },
         accent: {
-          pink: '#FECACA',
+          pink: '#FECDD3',
           green: '#A7F3D0',
-          cyan: '#67E8F9',
-          purple: '#C4B5FD',
+          cyan: '#BAE6FD',
+          purple: '#DDD6FE',
         }
       },
       boxShadow: {
-        'neo': '8px 8px 0 #0F172A',
-        'neo-sm': '6px 6px 0 #0F172A',
-        'neo-xs': '4px 4px 0 #0F172A',
-        'neo-xxs': '3px 3px 0 #0F172A',
+        'neo': '6px 6px 0px #0F172A',
+        'neo-lg': '8px 8px 0px #0F172A',
+        'neo-sm': '4px 4px 0px #0F172A',
+        'neo-xs': '3px 3px 0px #0F172A',
+        'neo-xxs': '2px 2px 0px #0F172A',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['"Space Grotesk"', '"Plus Jakarta Sans"', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
       },
     },
   },
