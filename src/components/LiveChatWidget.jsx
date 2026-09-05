@@ -97,6 +97,22 @@ export default function LiveChatWidget() {
     }).catch(() => {})
   }
 
+  const formatClientTime = (isoStr) => {
+    if (!isoStr) return ''
+    try {
+      let clean = isoStr.replace(' ', 'T')
+      if (!clean.endsWith('Z') && !clean.includes('+')) clean += 'Z'
+      const d = new Date(clean)
+      return d.toLocaleTimeString(navigator.language || 'id-ID', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      })
+    } catch (e) {
+      return ''
+    }
+  }
+
   const loadHistory = async (tid) => {
     try {
       const res = await fetch(`https://cs.tappdigital.id/api/public/ticket/${tid}`)
@@ -428,9 +444,7 @@ export default function LiveChatWidget() {
                       </div>
                       <div className="flex items-center gap-1 mt-1 px-1 text-[10px] text-slate-400">
                         <span>
-                          {m.created_at
-                            ? new Date(m.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-                            : ''}
+                          {formatClientTime(m.created_at)}
                         </span>
                         {isMe &&
                           (isRead ? (
