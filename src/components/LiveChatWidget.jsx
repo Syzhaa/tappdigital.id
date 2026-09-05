@@ -2,16 +2,21 @@ import React, { useState, useEffect, useRef } from 'react'
 
 export default function LiveChatWidget() {
   const [isOpen, setIsOpen] = useState(false)
-  const [step, setStep] = useState('form') // 'form' | 'chat'
+  const [step, setStep] = useState('form') // 'form' | 'restore' | 'chat'
   const [email, setEmail] = useState('')
+  const [restoreEmail, setRestoreEmail] = useState('')
   const [name, setName] = useState('')
   const [purpose, setPurpose] = useState('Pertanyaan Produk')
   const [ticketId, setTicketId] = useState(null)
   const [messages, setMessages] = useState([])
   const [inputText, setInputText] = useState('')
   const [isSending, setIsSending] = useState(false)
+  const [restoreError, setRestoreError] = useState('')
+  const [isTyping, setIsTyping] = useState(false)
+
   const messagesEndRef = useRef(null)
   const wsRef = useRef(null)
+  const typingTimeoutRef = useRef(null)
 
   useEffect(() => {
     const saved = localStorage.getItem('tapp_livechat_session')
@@ -22,6 +27,7 @@ export default function LiveChatWidget() {
           setTicketId(data.ticketId)
           setEmail(data.email)
           setName(data.name || 'Pengunjung')
+          setPurpose(data.purpose || 'Pertanyaan Produk')
           setStep('chat')
           loadHistory(data.ticketId)
         }
@@ -42,9 +48,6 @@ export default function LiveChatWidget() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
-  const [isTyping, setIsTyping] = useState(false)
-  const typingTimeoutRef = useRef(null)
-
   const connectWs = () => {
     try {
       const ws = new WebSocket('wss://cs.tappdigital.id/ws')
@@ -55,7 +58,22 @@ export default function LiveChatWidget() {
           if (data.event === 'new_message' && data.ticket_id === ticketId) {
             setIsTyping(false)
             setMessages((prev) => {
-              if (prev.some((m) => m.id === data.message.id)) return prev
+              // Cegah pesan duplikat berdasarkan ID asli database atau isi pesan yang sama persis
+              const exists = prev.some(
+                (m) =>
+                  (data.message.id && m.id === data.message.id) ||
+                  (m.sender_type === data.message.sender_type &&
+                    m.body === data.message.body &&
+                    Math.abs(new Date(m.created_at || Date.now()) - new Date(data.message.created_at || Date.now())) < 5000)
+              )
+              if (exists) {
+                // Perbarui ID dan is_read jika sebelumnya dari optimistic UI
+                return prev.map((m) =>
+                  m.body === data.message.body && m.sender_type === data.message.sender_type
+                    ? { ...m, id: data.message.id, is_read: data.message.is_read || 0 }
+                    : m
+                )
+              }
               return [...prev, data.message]
             })
           } else if (data.event === 'messages_read' && data.ticket_id === ticketId) {
@@ -121,6 +139,40 @@ export default function LiveChatWidget() {
     }
   }
 
+  const handleRestoreChat = async (e) => {
+    e.preventDefault()
+    if (!restoreEmail.trim()) return
+    setIsSending(true)
+    setRestoreError('')
+
+    try {
+      const res = await fetch('https://cs.tappdigital.id/api/livechat/restore', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: restoreEmail.trim() })
+      })
+      const data = await res.json()
+      if (res.ok && data.ticket_id) {
+        setTicketId(data.ticket_id)
+        setEmail(data.email)
+        setName(data.name || 'Pengunjung')
+        setPurpose(data.purpose || 'Pertanyaan Produk')
+        setMessages(data.messages || [])
+        localStorage.setItem(
+          'tapp_livechat_session',
+          JSON.stringify({ ticketId: data.ticket_id, email: data.email, name: data.name, purpose: data.purpose })
+        )
+        setStep('chat')
+      } else {
+        setRestoreError(data.detail || 'Email tidak ditemukan dalam riwayat obrolan.')
+      }
+    } catch (err) {
+      setRestoreError('Gagal menghubungkan ke server, coba lagi.')
+    } finally {
+      setIsSending(false)
+    }
+  }
+
   const handleSendMessage = async (e) => {
     e.preventDefault()
     if (!inputText.trim() || !ticketId || isSending) return
@@ -128,11 +180,12 @@ export default function LiveChatWidget() {
     setInputText('')
     setIsSending(true)
 
-    // Optimistic UI
+    // Optimistic UI sementara
     const tempMsg = {
       id: Date.now(),
       sender_type: 'CUSTOMER',
       body: textToSend,
+      is_read: 0,
       created_at: new Date().toISOString()
     }
     setMessages((prev) => [...prev, tempMsg])
@@ -154,6 +207,15 @@ export default function LiveChatWidget() {
     }
   }
 
+  const handleResetChat = () => {
+    if (confirm('Keluar dari obrolan ini? Anda bisa melanjutkan kembali kapan saja dengan memasukkan email.')) {
+      localStorage.removeItem('tapp_livechat_session')
+      setTicketId(null)
+      setMessages([])
+      setStep('form')
+    }
+  }
+
   return (
     <div className="fixed bottom-6 right-6 z-50 font-sans">
       {/* Tombol FAB Melayang */}
@@ -172,7 +234,7 @@ export default function LiveChatWidget() {
 
       {/* Box Chat Interaktif */}
       {isOpen && (
-        <div className="bg-[#17212b] border border-[#242f3d] w-[90vw] sm:w-[380px] h-[520px] rounded-2xl shadow-2xl flex flex-col overflow-hidden text-white animate-fade-in">
+        <div className="bg-[#17212b] border border-[#242f3d] w-[90vw] sm:w-[380px] h-[530px] rounded-2xl shadow-2xl flex flex-col overflow-hidden text-white animate-fade-in">
           {/* Header */}
           <div className="bg-[#242f3d] p-4 flex items-center justify-between border-b border-[#0e1621]">
             <div className="flex items-center gap-3">
@@ -187,26 +249,37 @@ export default function LiveChatWidget() {
                 </span>
               </div>
             </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="text-slate-400 hover:text-white text-xl leading-none p-1"
-            >
-              ✕
-            </button>
+            <div className="flex items-center gap-2">
+              {step === 'chat' && (
+                <button
+                  onClick={handleResetChat}
+                  title="Ganti akun / Sesi baru"
+                  className="text-slate-400 hover:text-amber-400 text-xs p-1"
+                >
+                  🔄
+                </button>
+              )}
+              <button
+                onClick={() => setIsOpen(false)}
+                className="text-slate-400 hover:text-white text-xl leading-none p-1"
+              >
+                ✕
+              </button>
+            </div>
           </div>
 
-          {/* Form Step */}
-          {step === 'form' ? (
+          {/* Form Step: Daftar Baru */}
+          {step === 'form' && (
             <form onSubmit={handleStartChat} className="p-5 flex-1 flex flex-col justify-between overflow-y-auto">
               <div>
-                <div className="text-center mb-5">
+                <div className="text-center mb-4">
                   <h4 className="font-bold text-base mb-1">Mulai Obrolan</h4>
                   <p className="text-xs text-slate-400">
-                    Masukkan email Anda untuk menghubungkan obrolan langsung ke tim CS kami.
+                    Hubungkan obrolan langsung ke tim CS kami.
                   </p>
                 </div>
 
-                <div className="space-y-3.5">
+                <div className="space-y-3">
                   <div>
                     <label className="block text-xs font-medium text-slate-300 mb-1">Nama Lengkap</label>
                     <input
@@ -215,7 +288,7 @@ export default function LiveChatWidget() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Nama Anda"
-                      className="w-full bg-[#0e1621] border border-[#242f3d] rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#2AABEE]"
+                      className="w-full bg-[#0e1621] border border-[#242f3d] rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-[#2AABEE]"
                     />
                   </div>
 
@@ -227,7 +300,7 @@ export default function LiveChatWidget() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="contoh@gmail.com"
-                      className="w-full bg-[#0e1621] border border-[#242f3d] rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#2AABEE]"
+                      className="w-full bg-[#0e1621] border border-[#242f3d] rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-[#2AABEE]"
                     />
                   </div>
 
@@ -236,7 +309,7 @@ export default function LiveChatWidget() {
                     <select
                       value={purpose}
                       onChange={(e) => setPurpose(e.target.value)}
-                      className="w-full bg-[#0e1621] border border-[#242f3d] rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#2AABEE]"
+                      className="w-full bg-[#0e1621] border border-[#242f3d] rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-[#2AABEE]"
                     >
                       <option value="Pertanyaan Produk">Pertanyaan Produk</option>
                       <option value="Order Website / Undangan">Order Website / Undangan</option>
@@ -248,19 +321,89 @@ export default function LiveChatWidget() {
                 </div>
               </div>
 
-              <button
-                type="submit"
-                disabled={isSending}
-                className="w-full bg-[#2AABEE] hover:bg-[#229ed9] text-white font-semibold py-3 rounded-xl text-sm transition-colors mt-4 shadow-lg disabled:opacity-50"
-              >
-                {isSending ? 'Menghubungkan...' : 'Mulai Obrolan Sekarang'}
-              </button>
+              <div>
+                <button
+                  type="submit"
+                  disabled={isSending}
+                  className="w-full bg-[#2AABEE] hover:bg-[#229ed9] text-white font-semibold py-2.5 rounded-xl text-sm transition-colors mt-3 shadow-lg disabled:opacity-50"
+                >
+                  {isSending ? 'Menghubungkan...' : 'Mulai Obrolan Sekarang'}
+                </button>
+
+                <div className="text-center mt-3 pt-3 border-t border-[#242f3d]">
+                  <p className="text-xs text-slate-400 mb-1.5">Pernah chat sebelumnya di perangkat lain?</p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setStep('restore')
+                      setRestoreError('')
+                    }}
+                    className="text-xs text-[#2AABEE] hover:underline font-medium"
+                  >
+                    👉 Lanjutkan Obrolan Sebelumnya
+                  </button>
+                </div>
+              </div>
             </form>
-          ) : (
-            /* Chat Step */
+          )}
+
+          {/* Restore Step: Lanjutkan Obrolan Lama */}
+          {step === 'restore' && (
+            <form onSubmit={handleRestoreChat} className="p-5 flex-1 flex flex-col justify-between overflow-y-auto">
+              <div>
+                <div className="text-center mb-5">
+                  <h4 className="font-bold text-base mb-1">Lanjutkan Obrolan</h4>
+                  <p className="text-xs text-slate-400">
+                    Masukkan email yang pernah Anda gunakan sebelumnya untuk menyinkronkan seluruh riwayat obrolan Anda.
+                  </p>
+                </div>
+
+                {restoreError && (
+                  <div className="mb-3.5 p-2.5 bg-red-900/40 border border-red-500/50 rounded-xl text-red-300 text-xs text-center">
+                    {restoreError}
+                  </div>
+                )}
+
+                <div>
+                  <label className="block text-xs font-medium text-slate-300 mb-1">Email Anda</label>
+                  <input
+                    type="email"
+                    required
+                    value={restoreEmail}
+                    onChange={(e) => setRestoreEmail(e.target.value)}
+                    placeholder="contoh@gmail.com"
+                    className="w-full bg-[#0e1621] border border-[#242f3d] rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#2AABEE]"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <button
+                  type="submit"
+                  disabled={isSending}
+                  className="w-full bg-[#2AABEE] hover:bg-[#229ed9] text-white font-semibold py-2.5 rounded-xl text-sm transition-colors mt-3 shadow-lg disabled:opacity-50"
+                >
+                  {isSending ? 'Menyinkronkan...' : 'Sinkronkan & Buka Chat'}
+                </button>
+
+                <div className="text-center mt-3 pt-3 border-t border-[#242f3d]">
+                  <button
+                    type="button"
+                    onClick={() => setStep('form')}
+                    className="text-xs text-slate-400 hover:text-white"
+                  >
+                    ← Kembali ke Mulai Obrolan Baru
+                  </button>
+                </div>
+              </div>
+            </form>
+          )}
+
+          {/* Chat Step: Tampilan Obrolan */}
+          {step === 'chat' && (
             <div className="flex-1 flex flex-col h-full overflow-hidden bg-[#0e1621]">
               <div className="flex-1 overflow-y-auto p-4 space-y-3">
-                <div className="text-center my-2">
+                <div className="text-center my-1">
                   <span className="text-[11px] bg-[#17212b] text-slate-400 px-3 py-1 rounded-full border border-[#242f3d]">
                     Kategori: {purpose}
                   </span>
@@ -275,7 +418,7 @@ export default function LiveChatWidget() {
                       className={`flex flex-col ${isMe ? 'items-end' : 'items-start'}`}
                     >
                       <div
-                        className={`max-w-[78%] px-3.5 py-2.5 rounded-2xl text-[13.5px] leading-relaxed break-words shadow ${
+                        className={`max-w-[78%] px-3.5 py-2 rounded-2xl text-[13.5px] leading-relaxed break-words shadow ${
                           isMe
                             ? 'bg-[#2b5278] text-white rounded-br-xs'
                             : 'bg-[#182533] text-slate-100 rounded-bl-xs border border-[#242f3d]'
@@ -284,14 +427,21 @@ export default function LiveChatWidget() {
                         {m.body}
                       </div>
                       <div className="flex items-center gap-1 mt-1 px-1 text-[10px] text-slate-400">
-                        <span>{m.created_at ? new Date(m.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ''}</span>
-                        {isMe && (
-                          isRead ? (
-                            <span className="text-[#2AABEE] font-bold text-xs" title="Dibaca">✓✓</span>
+                        <span>
+                          {m.created_at
+                            ? new Date(m.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                            : ''}
+                        </span>
+                        {isMe &&
+                          (isRead ? (
+                            <span className="text-[#2AABEE] font-bold text-xs" title="Dibaca">
+                              ✓✓
+                            </span>
                           ) : (
-                            <span className="text-slate-400 text-xs" title="Terkirim">✓</span>
-                          )
-                        )}
+                            <span className="text-slate-400 text-xs" title="Terkirim">
+                              ✓
+                            </span>
+                          ))}
                       </div>
                     </div>
                   )
@@ -320,7 +470,7 @@ export default function LiveChatWidget() {
                     reportCustomerTyping()
                   }}
                   placeholder="Ketik pesan balasan..."
-                  className="flex-1 bg-[#0e1621] border border-[#242f3d] rounded-xl px-3.5 py-2.5 text-sm text-white focus:outline-none focus:border-[#2AABEE]"
+                  className="flex-1 bg-[#0e1621] border border-[#242f3d] rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-[#2AABEE]"
                 />
                 <button
                   type="submit"
