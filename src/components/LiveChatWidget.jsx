@@ -58,7 +58,6 @@ export default function LiveChatWidget() {
           if (data.event === 'new_message' && data.ticket_id === ticketId) {
             setIsTyping(false)
             setMessages((prev) => {
-              // Cegah pesan duplikat berdasarkan ID asli database atau isi pesan yang sama persis
               const exists = prev.some(
                 (m) =>
                   (data.message.id && m.id === data.message.id) ||
@@ -67,7 +66,6 @@ export default function LiveChatWidget() {
                     Math.abs(new Date(m.created_at || Date.now()) - new Date(data.message.created_at || Date.now())) < 5000)
               )
               if (exists) {
-                // Perbarui ID dan is_read jika sebelumnya dari optimistic UI
                 return prev.map((m) =>
                   m.body === data.message.body && m.sender_type === data.message.sender_type
                     ? { ...m, id: data.message.id, is_read: data.message.is_read || 0 }
@@ -76,6 +74,11 @@ export default function LiveChatWidget() {
               }
               return [...prev, data.message]
             })
+
+            // Jika pesan baru dikirim dari CS (AGENT), tandai langsung sebagai terbaca oleh customer
+            if (data.message.sender_type === 'AGENT') {
+              fetch(`https://cs.tappdigital.id/api/public/ticket/${ticketId}/read`, { method: 'POST' }).catch(() => {})
+            }
           } else if (data.event === 'messages_read' && data.ticket_id === ticketId) {
             setMessages((prev) => prev.map((m) => ({ ...m, is_read: 1 })))
           } else if (data.event === 'user_typing' && data.ticket_id === ticketId && data.sender_type === 'AGENT') {
@@ -131,6 +134,8 @@ export default function LiveChatWidget() {
       if (res.ok) {
         const data = await res.json()
         setMessages(data.messages || [])
+        // Tandai pesan dari CS sebagai terbaca oleh customer
+        fetch(`https://cs.tappdigital.id/api/public/ticket/${tid}/read`, { method: 'POST' }).catch(() => {})
       }
     } catch (e) {}
   }
